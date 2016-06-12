@@ -7,12 +7,12 @@ import UIKit
 extension Int {
     
     //Binary String
-    var toBinaryString: String {
+    var binaryString: String {
         return String(self, radix:2)
     }
     
     //Hex String
-    var toHexaString: String {
+    var hexString: String {
         return String(self, radix: 16)
     }
 }
@@ -20,5 +20,5 @@ extension Int {
 //create an inter variable
 let number = 9
 print(number)
-print(number.toBinaryString)
-print(number.toHexaString)
+print(number.binaryString)
+print(number.hexString)
