@@ -1,0 +1,36 @@
+class RadialGradient: CALayer {
+    
+    //Just to make sure, our layer starts at (0,0) with '0' radius by default
+    var center = CGPoint(x: 0, y: 0)
+    var radius  = CGFloat(0.0)
+    var colors = [CGColor]()
+    
+    override init() {
+        super.init()
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init()
+    }
+    
+    init(center: CGPoint, radius: CGFloat, colors: [CGColor]) {
+        
+        self.center = center
+        self.radius = radius
+        self.colors = colors
+        super.init()
+        
+        //If true, no need to call -setNeedsDisplay() on this layer
+        needsDisplayOnBoundsChange = true
+    }
+    
+    override func draw(in ctx: CGContext) {
+        
+        ctx.saveGState()
+        
+        //Make sure, we get the CGGradient object out of these vars
+        if let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colors as CFArray, locations: [0.0, 1.0]) {
+            ctx.drawRadialGradient(gradient, startCenter: center, startRadius: 0.0, endCenter: center, endRadius: radius, options: CGGradientDrawingOptions(rawValue: 0))
+        }
+    }
+}
