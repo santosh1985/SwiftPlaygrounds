@@ -34,3 +34,8 @@ class RadialGradient: CALayer {
         }
     }
 }
+
+//And this is how we could make use of this class
+let gradientLayer = RadialGradientLayer(center: view.center, radius: CGFloat(view.frame.size.width/2), colors: [UIColor.white.cgColor, UIColor.black.cgColor])
+gradientLayer.frame = self.view.bounds
+self.view.layer.insertSublayer(gradientLayer, at: 0)
